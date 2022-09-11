@@ -38,6 +38,7 @@ namespace Application.Features.Models.Queries.GetListModel
                                               );
 
                 ModelListModel model = _mapper.Map<ModelListModel>(temp);
+                return model;
             }
         }
 
