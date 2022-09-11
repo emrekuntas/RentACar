@@ -1,4 +1,4 @@
-﻿using Application.Services.Repositories;
+﻿using Application.Services.Respositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,9 +18,11 @@ namespace Persistence
                                                                 IConfiguration configuration)
         {
             services.AddDbContext<BaseDbContext>(options =>
-                                                     options.UseSqlServer(
-                                                         configuration.GetConnectionString("RentACarCampConnectionString")));
-            services.AddScoped<IBrandRepository, BrandRepository>();
+                                                     options.UseNpgsql(
+                                                         configuration.GetConnectionString("RentACarConnectionString")));
+            services.AddScoped<IBrandRespository, BrandRepository>();
+
+            services.AddScoped<IModelRepository, ModelRepository>();
 
             return services;
         }
